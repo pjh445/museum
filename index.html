@@ -36,7 +36,7 @@
             
             // 데이터를 가져오는 함수
             function fetchData() {
-                fetch('https://apis.data.go.kr/1371033/mmcadensity/congestion?serviceKey=u9ids4VxsKVpFzEzkWWsO1MZBY2L%2Fdoo0TLquOwRRTw6Ahbm5Mim42P%2BXvt3Fhd6wm8OHhTvuGWHsRgfNyvT5A%3D%3D&spaceCode=MMCA-SPACE-1005')  // API 요청
+                fetch('http://apis.data.go.kr/1371033/mmcadensity/congestion?serviceKey=u9ids4VxsKVpFzEzkWWsO1MZBY2L%2Fdoo0TLquOwRRTw6Ahbm5Mim42P%2BXvt3Fhd6wm8OHhTvuGWHsRgfNyvT5A%3D%3D&spaceCode=MMCA-SPACE-1005')  // API 요청
                     .then(response => response.json())  // JSON 형식으로 응답을 변환
                     .then(d => {
 						const data = d.data;
