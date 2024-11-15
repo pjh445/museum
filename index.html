@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>API 데이터 출력</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        p {
+            margin: 10px 0;
+        }
+        b {
+            color: orange;
+        }
+        i {
+            color: yellowgreen;
+        }
+    </style>
+</head>
+<body>
+    <h1>API 데이터</h1>
+    <div id="result"></div>
+
+    <script>
+        // DOM이 로드된 후 실행
+        document.addEventListener('DOMContentLoaded', () => {
+            const resultDiv = document.getElementById('result');  // 결과를 출력할 div 요소
+            
+            // 데이터를 가져오는 함수
+            function fetchData() {
+                fetch('https://apis.data.go.kr/1371033/mmcadensity/congestion?serviceKey=u9ids4VxsKVpFzEzkWWsO1MZBY2L%2Fdoo0TLquOwRRTw6Ahbm5Mim42P%2BXvt3Fhd6wm8OHhTvuGWHsRgfNyvT5A%3D%3D&spaceCode=MMCA-SPACE-1005')  // API 요청
+                    .then(response => response.json())  // JSON 형식으로 응답을 변환
+                    .then(d => {
+						const data = d.data;
+                        // 데이터를 성공적으로 받았을 때 화면에 출력                       
+                            const p = document.createElement('p');
+                            p.innerHTML = `<b>${data.agncNm}_</b> ${data.spaceNm} <i>${data.congestionNm}</i>`;
+                            resultDiv.appendChild(p);
+                       
+                    })
+                    .catch(error => {
+                        console.error('데이터 가져오기 오류:', error);
+                        resultDiv.innerHTML = '데이터를 가져오는 데 오류가 발생했습니다.';
+                    });
+            }
+
+            // 데이터 가져오기 함수 호출
+            fetchData();
+        });
+    </script>
+</body>
+</html>
